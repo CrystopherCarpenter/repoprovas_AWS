@@ -1,14 +1,12 @@
-import { getRepository } from "typeorm";
+import bcrypt from "bcrypt";
+import { prisma } from "../../src/database.js";
+import { CreateUserData } from "../../src/services/userService.js";
 
-import User from "../../src/entities/User";
-
-export async function createUser () {
-  const user = await getRepository(User).create({
-    email: "email@email.com",
-    password: "123456"
+export default async function userFactory(user: CreateUserData) {
+  await prisma.user.create({
+    data: {
+      ...user,
+      password: bcrypt.hashSync(user.password, 10),
+    },
   });
-
-  await getRepository(User).save(user);
-
-  return user;
 }

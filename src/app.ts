@@ -1,20 +1,14 @@
-import "./setup";
-
-import express from "express";
+import "./setup.js";
 import cors from "cors";
-import "reflect-metadata";
-
-import connectDatabase from "./database";
-import { setupRoute } from "./config/route";
+import express, { json } from "express";
+import "express-async-errors";
+import { errorHandlerMiddleware } from "./middlewares/errorHandlerMiddleware.js";
+import router from "./routers/index.js";
 
 const app = express();
+app.use(json());
 app.use(cors());
-app.use(express.json());
-setupRoute(app);
-
-
-export async function init () {
-  await connectDatabase();
-}
+app.use(router);
+app.use(errorHandlerMiddleware);
 
 export default app;
