@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/server.ts",
+    "dev:test": "dotenv -e .env.test prisma db seed && dotenv -e .env.test nodemon src/server.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i",
     "migrate": "dotenv -e .env.test prisma migrate dev"
   },

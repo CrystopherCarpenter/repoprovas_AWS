@@ -44,8 +44,13 @@ async function getUserOrFail(loginData: CreateUserData) {
   return user;
 }
 
+async function truncate() {
+  await userRepository.truncate();
+}
+
 export default {
   signUp,
   signIn,
   findById,
+  truncate,
 };
