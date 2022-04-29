@@ -10,7 +10,6 @@ describe("User tests - POST /sign-up", () => {
   afterAll(disconnect);
 
   it("should return 201 and persist the user given a valid body", async () => {
-    // Arrange, Act, Assert
     const body = userBodyFactory();
 
     const response = await supertest(app).post("/sign-up").send(body);
