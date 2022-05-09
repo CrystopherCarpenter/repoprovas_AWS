@@ -15,7 +15,6 @@ async function signUp(createUserData: CreateUserData) {
   if (existingUser) throw conflictError("Email must be unique");
 
   const hashedPassword = bcrypt.hashSync(createUserData.password, 12);
-
   await userRepository.insert({ ...createUserData, password: hashedPassword });
 }
 
