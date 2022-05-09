@@ -17,4 +17,4 @@ jobs:
       - name: Run tests
         run: docker-compose -f docker-compose-test.yml run node_app npm run test
       - name: Build
-        run: npm run build
+        run: npm run ci && npm run build
