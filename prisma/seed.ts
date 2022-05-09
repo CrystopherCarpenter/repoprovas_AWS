@@ -2,7 +2,6 @@ import { prisma } from "../src/database.js";
 
 async function main() {
   //upsert = update/insert
-  //melhor que create por que pode dar conflito em campos unicos
   await prisma.category.createMany({
     data: [{ name: "P1" }, { name: "P2" }, { name: "P3" }],
     skipDuplicates: true,
