@@ -56,6 +56,7 @@ CREATE TABLE "tests" (
     "pdfUrl" TEXT NOT NULL,
     "categoryId" INTEGER NOT NULL,
     "teacherDisciplineId" INTEGER NOT NULL,
+    "view" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "tests_pkey" PRIMARY KEY ("id")
 );

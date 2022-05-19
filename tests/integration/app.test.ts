@@ -5,9 +5,13 @@ import { CreateUserData } from "../../src/services/userService";
 
 describe("Integration Tests", () => {
   describe("POST /sign-up", () => {
+    beforeEach(async () => {
+      await prisma.$executeRaw`TRUNCATE TABLE users;`;
+    });
+
     it("should persist the user given a valid body", async () => {
       const user: CreateUserData = {
-        email: "dina233@email.com",
+        email: "fulaninho@email.com",
         password: "123",
       };
 

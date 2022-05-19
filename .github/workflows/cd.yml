@@ -1,18 +1,19 @@
-name: Automatic Deploy
+name: Deploy on Heroku
+
 on:
   push:
     branches:
-      - feat/new-feat
+      - main
 
 jobs:
-  AutoDeployHeroku:
+  HerokuDeploy:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "money-driven" #Must be unique in Heroku
-          heroku_email: "mateusdnm@hotmail.com"
-          branch: "feat/new-feat" # <- This will point to the api folder in your project
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          branch: "main"
